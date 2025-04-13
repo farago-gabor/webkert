@@ -1,0 +1,11 @@
+@for ( device of userDevices; track device.id) {
+    <mat-card class="device-card">
+      <!-- <mat-card-title>{{ device.type | titlecase }}</mat-card-title> -->
+      <mat-card-title>{{ device.type }}</mat-card-title>
+      <mat-card-content>
+        <p><strong>Márka:</strong> {{ device.brand }}</p>
+        <p><strong>Modell:</strong> {{ device.model }}</p>
+        <p><strong>Sorozatszám:</strong> {{ device.serialNumber }}</p>
+      </mat-card-content>
+    </mat-card>
+}
