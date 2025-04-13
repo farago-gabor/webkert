@@ -1,0 +1,13 @@
+<nav>
+    <div class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </div>
+    <ul [class.open]="menuOpen">
+      <li><a routerLink="/">Főoldal</a></li>
+      <li><a routerLink="/about-us">Rólunk</a></li>
+      <li><a routerLink="/appointment">Időpontfoglalás</a></li>
+      <li><a routerLink="/login">Bejelentkezés</a></li>
+      <li><a routerLink="/registration">Regisztráció</a></li>
+      <li><a routerLink="/profile">Profil</a></li>
+    </ul>
+  </nav>

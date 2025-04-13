@@ -1,0 +1,25 @@
+<div class="appointment-container">
+    <h1 class="title">Időpontfoglalás</h1>
+    <form class="appointment-form">
+      <mat-card class="calendar-container">
+        <mat-calendar [(selected)]="selectedDate"></mat-calendar>
+      </mat-card>
+  
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Válassz egy időpontot</mat-label>
+        <mat-select [(value)]="selectedTime">
+            @for (time of availableTimes; track time) {
+            <mat-option [value]="time">
+                {{ time }}
+            </mat-option>
+            }
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" class="submit-button" (click)="saveAppointment()">
+        Foglalás
+      </button>
+      
+    </form>
+</div>
+  

@@ -1,0 +1,34 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 0 20px;
+    background-color: #e3f2fd; // Világoskék háttér
+    color: #0d47a1; // Sötétkék szöveg
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  
+  /* Reszponzív stílusok */
+  @media (min-width: 768px) {
+    .title {
+      font-size: 3.5rem;
+    }
+  
+    .subtitle {
+      font-size: 1.5rem;
+    }
+  }

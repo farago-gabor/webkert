@@ -1,0 +1,66 @@
+nav {
+    background-color: #0d47a1; // Sötétkék háttér
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: #e3f2fd; // Világoskék szöveg
+    cursor: pointer;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.3s ease;
+  }
+  
+  li {
+    display: inline;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #e3f2fd; // Világoskék szöveg
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #bbdefb; // Világosabb kék szöveg hover állapotban
+  }
+  
+  /* Reszponzív stílusok */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+  
+    ul {
+      flex-direction: column;
+      align-items: center;
+      max-height: 0;
+      overflow: hidden;
+      background-color: #0d47a1;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+  
+    ul.open {
+      max-height: 400px; // Megnyitott állapot
+    }
+  
+    li {
+      margin: 10px 0;
+    }
+  }

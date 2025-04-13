@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+.appointment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #e3f2fd; // Világoskék háttér
+    color: #0d47a1; // Sötétkék szöveg
+    min-height: 100vh;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px; // Növelt maximális szélesség
+  }
+  
+  .calendar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  
+  mat-calendar {
+    width: 100%; // A naptár kitölti a rendelkezésre álló helyet
+    max-width: 400px; // Maximális szélesség nagyobb képernyőkön
+    height: auto;
+  }
+
+    
+  .form-field {
+    width: 100%;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
