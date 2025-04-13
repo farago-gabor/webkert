@@ -10,7 +10,7 @@
     <!-- Eszközök listája -->
     <div class="devices">
       <h3>Eszközök</h3>
-      @for ( device of devices; track device.id) {
+      @for ( device of userDevices; track device.id) {
         <mat-card class="device-card">
           <!-- <mat-card-title>{{ device.type | titlecase }}</mat-card-title> -->
           <mat-card-title>{{ device.type }}</mat-card-title>
