@@ -1,26 +1,48 @@
 <div class="registration-container">
-    <h1 class="title">Regisztráció</h1>
-    <form class="registration-form">
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Teljes név</mat-label>
-        <input matInput type="text" placeholder="Add meg a teljes neved" />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="Add meg az email címed" />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Jelszó</mat-label>
-        <input matInput type="password" placeholder="Add meg a jelszavad" />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Jelszó megerősítése</mat-label>
-        <input matInput type="password" placeholder="Erősítsd meg a jelszavad" />
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" class="register-button">Regisztráció</button>
-    </form>
+  <h1 class="title">Regisztráció</h1>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Teljes név</mat-label>
+      <input matInput type="text" formControlName="name" placeholder="Add meg a teljes neved" />
+      @if (registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched) {
+        <mat-error>
+          A név legalább 3 karakter hosszú legyen!
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Add meg az email címed" />
+      @if (registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched) {
+        <mat-error>
+          Érvényes email címet adj meg!
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Jelszó</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="Add meg a jelszavad" />
+      @if (registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched) {
+        <mat-error>
+          A jelszónak legalább 6 karakter hosszúnak kell lennie!
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Jelszó megerősítése</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" placeholder="Erősítsd meg a jelszavad" />
+      @if (registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched) {
+        <mat-error>
+          A jelszó megerősítése kötelező!
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="register-button" [disabled]="registrationForm.invalid">
+      Regisztráció
+    </button>
+  </form>
 </div>

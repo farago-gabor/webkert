@@ -1,0 +1,39 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #e3f2fd; // Világoskék háttér
+    color: #0d47a1; // Sötétkék szöveg
+    min-height: 100vh;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .user-info {
+    margin-bottom: 2rem;
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .devices {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .device-card {
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
