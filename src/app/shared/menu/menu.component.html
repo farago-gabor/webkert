@@ -5,9 +5,17 @@
     <ul [class.open]="menuOpen">
       <li><a routerLink="/">Főoldal</a></li>
       <li><a routerLink="/about-us">Rólunk</a></li>
-      <li><a routerLink="/appointment">Időpontfoglalás</a></li>
-      <li><a routerLink="/login">Bejelentkezés</a></li>
-      <li><a routerLink="/registration">Regisztráció</a></li>
-      <li><a routerLink="/profile">Profil</a></li>
+      @if (isLoggedIn) {
+        <li><a routerLink="/appointment">Időpontfoglalás</a></li>
+        <li><a routerLink="/profile">Profil</a></li>
+        <li>
+        <button type="button" (click)="logout()">Kijelentkezés</button>
+        </li>
+      }
+      @if (!isLoggedIn) {
+        <li><a routerLink="/login">Bejelentkezés</a></li>
+        <li><a routerLink="/registration">Regisztráció</a></li>
+      }
+      
     </ul>
   </nav>
