@@ -5,21 +5,25 @@ import {
   signInWithEmailAndPassword,
   signOut,
   authState,
-  User,
-  UserCredential
+  User as FirebaseUser,
+  UserCredential,
+  createUserWithEmailAndPassword
 } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { collection, Firestore, setDoc, doc } from '@angular/fire/firestore';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser: Observable<User | null>;
+  currentUser: Observable<FirebaseUser | null>;
   //isLoggedIn$: Observable<boolean>; // ÚJ
 
   constructor(
     private auth: Auth,
+    private firestore: Firestore,
     private router: Router
   ) {
     this.currentUser = authState(this.auth);
@@ -37,7 +41,44 @@ export class AuthService {
     });
   }
 
-  
+  // Regisztráció
+  async signUp(email: string, password: string, userData: Partial<User>): Promise<UserCredential> {
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
+
+      // Itt tárold el a felhasználó adatait a Firestore adatbázisban
+      // Például:
+      // await setDoc(doc(this.firestore, 'users', user.uid), {
+      //   email,
+      //   ...userData
+      // });
+
+      await this.creteUserData(userCredential.user.uid, {
+        ...userData,
+        id: userCredential.user.uid,
+        email: email,
+        devices: [],
+        appointments: []
+      });
+
+
+      return userCredential;
+    } catch (error) {
+      console.error('Hiba a regisztráció során:', error);
+      throw error;
+    }
+
+  }
+
+  async creteUserData(uid: string, userData: Partial<User>): Promise<void> {
+    const userRef = doc(collection(this.firestore, 'Users'), uid);
+    
+    return setDoc(userRef, userData);
+  } 
+
+
   isLoggedIn(): Observable<boolean> {
     return this.currentUser.pipe(map(user => !!user));
   }

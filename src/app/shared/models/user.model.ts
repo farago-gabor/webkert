@@ -1,6 +1,8 @@
 export interface User {
-    id: number;
+    id: string;
     name: string;
     email: string;
-    passwordHash: string;
+    //passwordHash: string;
+    devices: string[]; // Eszközök azonosítói
+    appointments: string[]; // Időpontok azonosítói
 }

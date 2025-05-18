@@ -26,6 +26,12 @@
             }
         </mat-select>
       </mat-form-field>
+
+      <!-- Rövid leírás mező hozzáadása -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Rövid leírás</mat-label>
+        <textarea matInput name="description" rows="3" placeholder="Add meg a hibát vagy megjegyzést"></textarea>
+      </mat-form-field>
   
       <button mat-raised-button color="primary" class="submit-button" (click)="saveAppointment()">
         Foglalás
