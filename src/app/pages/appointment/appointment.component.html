@@ -15,6 +15,17 @@
             }
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Válassz egy szolgáltatást</mat-label>
+        <mat-select [(value)]="services">
+            @for (service of services; track service) {
+            <mat-option [value]="service">
+                {{ service }}
+            </mat-option>
+            }
+        </mat-select>
+      </mat-form-field>
   
       <button mat-raised-button color="primary" class="submit-button" (click)="saveAppointment()">
         Foglalás

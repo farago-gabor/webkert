@@ -39,6 +39,13 @@ export class AppointmentComponent {
     '11:00'
   ];
 
+  services: string[] = [
+    'Számítógép javítás',
+    'Laptop javítás',
+    'Mobiltelefon javítás',
+    'Nyomtató javítás'
+  ];
+
   saveAppointment(): void {
     if (this.selectedDate && this.selectedTime) {
       const appointmentDate = new Date(this.selectedDate);
