@@ -8,6 +8,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { Appointment } from '../../shared/models/appointment.model';
 
 import {MatCardModule} from '@angular/material/card';
+import { AppointmentService } from '../../shared/services/appointment.service';
 
 @Component({
   selector: 'app-appointment',
@@ -45,13 +46,14 @@ export class AppointmentComponent {
     'Mobiltelefon javítás',
     'Nyomtató javítás'
   ];
-
+/*
   saveAppointment(): void {
+    
     if (this.selectedDate && this.selectedTime) {
       const appointmentDate = new Date(this.selectedDate);
       const [hours, minutes] = this.selectedTime.split(':').map(Number);
       appointmentDate.setHours(hours, minutes);
-
+      
       const newAppointment: Appointment = {
         id: Date.now(), // Egyedi azonosító generálása
         userId: 1, // Példa felhasználó azonosító
@@ -60,10 +62,40 @@ export class AppointmentComponent {
         notes: this.notes
       };
 
-      console.log('Mentett időpont:', newAppointment);
+      //console.log('Mentett időpont:', newAppointment);
       alert('Az időpont sikeresen mentve!');
     } else {
       alert('Kérlek, válassz egy dátumot és időpontot!');
+    }
+      
+  }*/
+
+  selectedService: string | null = null;
+
+  constructor(private appointmentService: AppointmentService) {}
+
+  async saveAppointment(): Promise<void> {
+    if (this.selectedDate && this.selectedTime && this.selectedService) {
+      const appointmentDate = new Date(this.selectedDate);
+      const [hours, minutes] = this.selectedTime.split(':').map(Number);
+      appointmentDate.setHours(hours, minutes);
+
+      try {
+        await this.appointmentService.addAppointment({
+          appointmentDate,
+          service: this.selectedService
+        });
+        alert('Az időpont sikeresen mentve!');
+        // Itt resetelheted a formot, ha szeretnéd
+        this.selectedDate = null;
+        this.selectedTime = null;
+        this.selectedService = null;
+        this.notes = '';
+      } catch (error) {
+        alert('Hiba az időpont mentésekor: ' + (error as any).message);
+      }
+    } else {
+      alert('Kérlek, válassz egy dátumot, időpontot és szolgáltatást!');
     }
   }
 }

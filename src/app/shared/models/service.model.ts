@@ -1,6 +1,5 @@
 export interface Service {
-    id: number; // Egyedi azonosító
-    appointmentId: number; // Időpont azonosítója
+    id: string; // Egyedi azonosító
     serviceName: string; // Szolgáltatás neve
     serviceDescription: string; // Szolgáltatás leírása
 }

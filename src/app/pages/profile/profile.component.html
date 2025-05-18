@@ -1,28 +1,89 @@
 <div class="profile-container">
-    <h1 class="title">Profil</h1>
-  
-    <!-- Felhasználó adatai -->
-    <div class="user-info">
-      <h2>{{ user?.name }}</h2>
-      <p><strong>Email:</strong> {{ user?.email }}</p>
+  <h1 class="title">Profil</h1>
+
+  <!-- Felhasználó adatai -->
+  <div class="user-info">
+    <h2>{{ user?.name }}</h2>
+    <p><strong>Email:</strong> {{ user?.email }}</p>
+  </div>
+
+  <!-- Időpontok listája -->
+  <div class="appointments">
+    <h3>Időpontok</h3>
+    <div class="appointment-list">
+      @for (appointment of appointments; track appointment.id) {
+        <mat-card class="appointment-card">
+          <mat-card-title>
+            {{ appointment.appointmentDate | date:'yyyy.MM.dd. HH:mm' }}
+          </mat-card-title>
+          <mat-card-content>
+            <p><strong>Szolgáltatás:</strong> {{ appointment.service }}</p>          
+          </mat-card-content>
+        </mat-card>
+      } @empty {
+        <p>Nincs időpont foglalva.</p>
+      }
     </div>
-  
-    <!-- Eszközök listája -->
-    <div class="devices">
-      <h3>Eszközök</h3>
-      @for ( device of userDevices; track device.id) {
+  </div>
+
+  <!-- Eszközök listája -->
+  <div class="devices">
+    <h3>Eszközök</h3>
+    <div class="device-list">
+      @for (device of devices; track device.id) {
         <mat-card class="device-card">
-          <!-- <mat-card-title>{{ device.type | titlecase }}</mat-card-title> -->
           <mat-card-title>{{ device.type }}</mat-card-title>
           <mat-card-content>
             <p><strong>Márka:</strong> {{ device.brand }}</p>
             <p><strong>Modell:</strong> {{ device.model }}</p>
             <p><strong>Sorozatszám:</strong> {{ device.serialNumber }}</p>
           </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="onDeleteDevice(device.id)">
+              Törlés
+            </button>
+          </mat-card-actions>
         </mat-card>
       } @empty {
         <p>Nincs eszköz hozzárendelve.</p>
       }
     </div>
   </div>
-  
+
+  <!-- Új eszköz hozzáadása űrlap -->
+<div class="add-device-form">
+  <h3>Új eszköz hozzáadása</h3>
+  <form [formGroup]="addDeviceForm" (ngSubmit)="onAddDevice()">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Típus</mat-label>
+        <mat-select formControlName="type" required>
+          <mat-option value="laptop">Laptop</mat-option>
+          <mat-option value="pc">PC</mat-option>
+          <mat-option value="telefon">Telefon</mat-option>
+          <mat-option value="tablet">Tablet</mat-option>
+          <mat-option value="egyéb">Egyéb</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Márka</mat-label>
+        <input matInput formControlName="brand" required>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Modell</mat-label>
+        <input matInput formControlName="model" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Sorozatszám</mat-label>
+        <input matInput formControlName="serialNumber" required>
+      </mat-form-field>
+    </div>
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="addDeviceForm.invalid">
+        Eszköz hozzáadása
+      </button>
+    </div>
+  </form>
+</div>
