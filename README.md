@@ -8,7 +8,7 @@
 - Időpontfoglalás bug, nem adja hozzá jól az időpontot
 - Elmaradt CRUD műveletek
 - Custom Pipe
-- @Input, @Output komponensek
+- @Input, @Output szülő-gyermek komponens kapcsolatok (több megvalósítása és meglévő javítása)
 - komplex Firestore lekérdezések
 - Több különböző Lifecycle Hook
 - Esetlegesen:
